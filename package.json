@@ -1,0 +1,35 @@
+{
+  "name": "thor-tracer-test",
+  "version": "1.0.0",
+  "description": "test for thor-tracer",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register ./test/analyze.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AsbertMa/thor-tracer-test.git"
+  },
+  "author": "Asbert Ma <stayinalive@msn.cn>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AsbertMa/thor-tracer-test/issues"
+  },
+  "homepage": "https://github.com/AsbertMa/thor-tracer-test#readme",
+  "dependencies": {
+    "@vechain/connex-framework": "1.1.0",
+    "@vechain/connex.driver": "1.1.0",
+    "@vechain/connex.driver-nodejs": "1.1.4",
+    "chai": "4.2.0",
+    "mocha": "6.2.0",
+    "thor-tracer": "git+https://github.com/AsbertMa/thor-tracer.git#dev"
+  },
+  "devDependencies": {
+    "@types/chai": "4.2.0",
+    "@types/mocha": "5.2.7",
+    "@types/node": "12.7.2",
+    "@vechain/connex": "1.4.0",
+    "ts-node": "8.3.0",
+    "typescript": "3.5.3"
+  }
+}
