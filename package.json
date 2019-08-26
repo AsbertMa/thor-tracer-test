@@ -4,7 +4,7 @@
   "description": "test for thor-tracer",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register ./test/analyze.test.ts"
+    "test": "mocha -r ts-node/register ./test/analyze.test.ts --exit"
   },
   "repository": {
     "type": "git",

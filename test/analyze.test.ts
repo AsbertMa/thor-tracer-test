@@ -2,15 +2,21 @@ import { Analyze } from 'thor-tracer'
 import { expect } from 'chai'
 import { Framework } from '@vechain/connex-framework'
 import { SimpleNet, Driver } from '@vechain/connex.driver-nodejs'
-const genesis = require('./genesis.json')
-const connex = new Framework(
-  new Driver(
-    new SimpleNet('https://sync-testnet.vechain.org', 10000), genesis as Connex.Thor.Block)
-)
+
+interface Global extends NodeJS.Global {
+  connex: Connex
+}
+
+declare var global: Global
 
 const BLOCK_ID = '0x0036d78c68f63447a69d8f72e590dca4aa7061fd9781c46032ffb7124ff4d024'
 
 describe('Analyze', () => {
+  before(async () => {
+    const driver = await Driver.connect(new SimpleNet('https://sync-testnet.vechain.org', 10000))
+    global.connex = new Framework(driver)
+  })
+
   it('Default opts get all events and transfers in the block', (done) => {
     const analyze = new Analyze({
       filter: {}
