@@ -95,4 +95,29 @@ describe('Analyze', () => {
       done(e)
     })
   })
+
+  it('Filter by custom filter function, should have match result', (done) => {
+    const analyze = new Analyze(
+      {
+        filter: {},
+        eventFilter: (item): boolean => {
+          return item.address === '0x0000000000000000000000000000456e65726779'
+        },
+        transferFilter: (item): boolean => {
+          return item.recipient === '0xd015d91b42bed5feaf242082b11b83b431abbf4f'
+        }
+      },
+      connex
+    )
+
+    analyze.block(BLOCK_ID).then((result: Analyze.blockResult | null) => {
+      expect(result).to.have.keys(['blockId', 'events', 'transfers'])
+      expect(result!.events.length).to.be.equal(1, 'events.length === 1')
+      expect(result!.events[0].address).to.be.eq('0x0000000000000000000000000000456e65726779')
+      expect(result!.transfers.length).to.be.equal(1,'transfers.length === 1')
+      done()
+    }).catch(e => {
+      done(e)
+    })
+  })
 })
